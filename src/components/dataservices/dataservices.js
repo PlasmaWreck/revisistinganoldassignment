@@ -28,22 +28,12 @@ let flashCardDecks = [{
 let finalObject;
 
 function objectifyer(test){
-    let tempObj = {
-    cssDeck: {
-
-    }, 
-    jsDeck : {
-
-    }, 
-    htmlDeck: {
-
-    },
-    cSharpDeck:{
-
-    }};
+    let tempObj = {}
+    //console.log(tempObj);
     test.forEach(element => {
         tempObj[element.deckLang] = element;
     });
+
     return tempObj;
 }
 
@@ -57,13 +47,17 @@ async function FetchJSON(test) {
 
 async function setFlashCardDecks() {
     let tempArr = [];
-    for(let y = 0; y < flashCardDecks.length; y++) {
-        tempArr[y] = await FetchJSON(`https://spreadsheets.google.com/feeds/list/${flashCardDecks[y].url}/1/public/full?alt=json`).then(data => data = data.feed.entry);
-        for (let i = 0; i < tempArr[y].length; i++) {
-            flashCardDecks[y].cardVocab.push(tempArr[y][i].gsx$name.$t);
-            flashCardDecks[y].cardDescription.push(tempArr[y][i].gsx$desctription.$t);
+    console.log("testing");
+    for(let i = 0; i < flashCardDecks.length; i++) {
+        tempArr[i] = await FetchJSON(`https://spreadsheets.google.com/feeds/list/${flashCardDecks[i].url}/1/public/full?alt=json`).then(data => data = data.feed.entry);
+        console.log(flashCardDecks.length);
+        for (let y = 0; y < tempArr[i].length; y++) {
+            console.log(tempArr[i].length);
+            flashCardDecks[i].cardVocab.push(tempArr[i][y].gsx$name.$t);
+            flashCardDecks[i].cardDescription.push(tempArr[i][y].gsx$desctription.$t);
         }
     }
+
     return objectifyer(flashCardDecks);
 
 };

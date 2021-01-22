@@ -1,4 +1,4 @@
-import Btn from '../components/btn/btn';
+import Btn from '../components/shared/btn/btn';
 import Jumbo from '../components/titlejumbo/titlejumbo';
 import { Link } from "react-router-dom";
 const TitlePage = () => {

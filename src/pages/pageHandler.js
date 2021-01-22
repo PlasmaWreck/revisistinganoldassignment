@@ -1,27 +1,83 @@
-import Btn from '../components/btn/btn';
+import Btn from '../components/shared/btn/btn';
 import TitlePage from './titlepage';
 import FlashPage from './flashcardpage';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import { setFlashCardDecks } from '../components/dataservices/dataservices'
 import { Component } from 'react';
 
 class pageHandler extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            cardDecks: null
+            cardDecks: [{
+                deckLang: 'cssDeck',
+                cardVocab: [],
+                cardDescription: [],
+                url: '1wD7HWF3ELELPRP5QvfOAXdl3EkaJMP8KFrGsmItwwMg'
+            },
+            {
+                deckLang: 'jsDeck',
+                cardVocab: [],
+                cardDescription: [],
+                url: '17ll_3oJOJoiq9QbuYHqVCPEz-JB9OiuRk08Eqlj_kcY'
+            },
+            {
+                deckLang: 'htmlDeck',
+                cardVocab: [],
+                cardDescription: [],
+                url: '1TqYavKC7scvsT-sLM5cBb58kbU0pk-vilpFf6p55JQk'
+            },
+            {
+                deckLang: 'cSharpDeck',
+                cardVocab: [],
+                cardDescription: [],
+                url: '13BHhB9NgnfmjhFtHHLxO7qr0glFG8Z5RuaC4LPHY3W8'
+            }
+            ],
+            loaded:false
         }
+        this.setFlashCardDecks = this.setFlashCardDecks.bind(this);
     }
+    objectifyer(test){
+        let tempObj = {}
+        test.forEach(element => {
+            tempObj[element.deckLang] = element;
+        });
+    
+        return tempObj;
+    }
+    
+    async FetchJSON(test) {
+        return fetch(test).then(
+            resp => resp.json()
+        ).catch(
+            error => console.log(error)
+        );
+    }
+    
+    async setFlashCardDecks() {
+        let tempArr = [];
+        for(let i = 0; i < this.state.cardDecks.length; i++) {
+            tempArr[i] = await this.FetchJSON(`https://spreadsheets.google.com/feeds/list/${this.state.cardDecks[i].url}/1/public/full?alt=json`).then(data => data = data.feed.entry);
+            for (let y = 0; y < tempArr[i].length; y++) {
+                this.state.cardDecks[i].cardVocab.push(tempArr[i][y].gsx$name.$t);
+                this.state.cardDecks[i].cardDescription.push(tempArr[i][y].gsx$desctription.$t);
+            }
+        }
+    
+        return this.objectifyer(this.state.cardDecks);
+    
+    };
 
     componentDidMount() {
-        this._asyncRequest = setFlashCardDecks().then(
+        this._asyncRequest = this.setFlashCardDecks().then(
             cardDecks => {
                 this._asyncRequest = null;
                 this.setState({ cardDecks });
+                this.setState({ loaded:true });
                 console.log(this.state.cardDecks);
-                this.forceUpdate();
             }
+            
         );
     }
     componentWillUnmount() {
@@ -31,11 +87,8 @@ class pageHandler extends Component {
     }
 
     render() {
-        if (this.state.cardDecks === null) {
-            console.log('loadim,mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmng');
-            return (
-                <Btn />
-            )
+        if (this.state.loaded === false) {
+            return null;
         } else {
             return (
                 <Router>
@@ -45,13 +98,13 @@ class pageHandler extends Component {
                             <FlashPage loaded={true} cardDecks={this.state.cardDecks} lang={'cssDeck'} />
                         </Route>
                         <Route path="/js">
-                            <Btn text='CSS' colSize='10' as={Link} to='/css' />
+                            <FlashPage loaded={true} cardDecks={this.state.cardDecks} lang={'jsDeck'} />
                         </Route>
                         <Route path="/html">
-                            <Btn text='CSS' colSize='10' as={Link} to='/css' />
+                            <FlashPage loaded={true} cardDecks={this.state.cardDecks} lang={'htmlDeck'} />                        
                         </Route>
                         <Route path="/csharp">
-                            <Btn text='CSS' colSize='10' as={Link} to='/css' />
+                            <FlashPage loaded={true} cardDecks={this.state.cardDecks} lang={'cSharpDeck'} />                        
                         </Route>
                         <Redirect from='/' to='/title' />
                     </Switch>
