@@ -1,0 +1,22 @@
+@font-face{
+    font-family: semiCoderFont;
+    src: url('../../fonts/Semi-Coder-Regular.otf');
+}
+.jumbotron{
+    background-image: url("../../images/CodeJumboImage.jpg");
+    width: 1000px;
+}
+
+h1{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.712);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-right: 2%;
+    padding-left: 2%;
+    font-size: 400%;
+    font-family: semiCoderFont;
+    user-select: none;
+}

@@ -1,0 +1,11 @@
+@font-face{
+    font-family: semiCoderFont;
+    src: url('../../fonts/Semi-Coder-Regular.otf');
+}
+
+.flashCardBody{
+    background-color: rgba(0, 0, 0, 0.712);
+    color: white;
+    min-height: 400px;
+    user-select: none;
+}
