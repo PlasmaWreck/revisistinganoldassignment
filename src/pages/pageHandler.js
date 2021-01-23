@@ -1,4 +1,3 @@
-import Btn from '../components/shared/btn/btn';
 import TitlePage from './titlepage';
 import FlashPage from './flashcardpage';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";

@@ -1,0 +1,11 @@
+.backButton{
+    max-height: 50px;
+    width: auto;
+}
+.backText{
+    user-select: none;
+}
+.backText:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.164);
+}

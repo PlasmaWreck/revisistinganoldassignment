@@ -9,3 +9,14 @@
     min-height: 400px;
     user-select: none;
 }
+
+.flashCardVocab{
+    font-size: 700%;
+    display: flex;
+
+}
+.flashCardDef{
+    font-size: 200%;
+    display: flex;
+
+}
