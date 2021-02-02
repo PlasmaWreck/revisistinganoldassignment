@@ -5,7 +5,7 @@ const titlejumbo = () => {
         <Col xs={12} className="mt-5 centerX centerY">
             <Jumbotron fluid className = "">
                 <Container>
-                    <h1>Card Catagories</h1>
+                    <h1>Card Category</h1>
                 </Container>
             </Jumbotron>
         </Col>

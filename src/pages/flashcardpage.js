@@ -24,7 +24,6 @@ class flashPage extends Component {
     }
     ChangeDef = () => {
         this.setState({ isDef: !this.state.isDef });
-        console.log(this.state);
     }
     CountUp = () => {
         if (this.state.counter < this.state.flashCardDecks[this.state.deckLang].cardVocab.length - 1) {
