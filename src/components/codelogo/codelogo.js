@@ -1,9 +1,10 @@
 import { Col } from 'react-bootstrap';
 import './codelogo.css';
-import CSSLogo from '../../images/CSSIcon.png'
-import JSLogo from '../../images/JSIcon.png'
-import HTMLLogo from '../../images/HTMLIcon.png'
-import CSHarpLogo from '../../images/CSharpIcon.png'
+import CSSLogo from '../../images/CSSIcon.png';
+import JSLogo from '../../images/JSIcon.png';
+import HTMLLogo from '../../images/HTMLIcon.png';
+import CSHarpLogo from '../../images/CSharpIcon.png';
+import ReactLogo from '../../images/ReactLogo.png';
 
 import './codelogo.css';
 
@@ -21,6 +22,9 @@ const codelogo = (props) => {
         break;
         case 'cSharpDeck':
             imgPath = CSHarpLogo;
+        break;
+        case 'reactDeck':
+            imgPath = ReactLogo;
         break;
     }
     return (

@@ -31,6 +31,12 @@ class pageHandler extends Component {
                 cardVocab: [],
                 cardDescription: [],
                 url: '13BHhB9NgnfmjhFtHHLxO7qr0glFG8Z5RuaC4LPHY3W8'
+            },
+            {
+                deckLang: 'reactDeck',
+                cardVocab: [],
+                cardDescription: [],
+                url: '1Zp2PYxwP0vcbJygOHnmyKrKkkMzpHsLG5twbmO1lxWQ'
             }
             ],
             loaded:false
@@ -104,6 +110,9 @@ class pageHandler extends Component {
                         </Route>
                         <Route path="/csharp">
                             <FlashPage loaded={true} cardDecks={this.state.cardDecks} lang={'cSharpDeck'} />                        
+                        </Route>
+                        <Route path="/react">
+                            <FlashPage loaded={true} cardDecks={this.state.cardDecks} lang={'reactDeck'} />                        
                         </Route>
                         <Redirect from='/' to='/title' />
                     </Switch>

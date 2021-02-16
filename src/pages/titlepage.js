@@ -9,6 +9,7 @@ const TitlePage = () => {
             <Btn text='JavaScript' colSize='10' as={Link} to='/js' btnStyle='py-2 my-3 titleButton' />
             <Btn text='HTML' colSize='10' as={Link} to='/html' btnStyle='py-2 my-3 titleButton' />
             <Btn text='C#' colSize='10' as={Link} to='/csharp' btnStyle='py-2 my-3 titleButton' />
+            <Btn text='React' colSize='10' as={Link} to='/react' btnStyle='py-2 my-3 titleButton' />
         </>
     );
 }
